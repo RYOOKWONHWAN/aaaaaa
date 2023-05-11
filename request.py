@@ -322,7 +322,7 @@ def recommend_movie():
     movie_id = request.args.get('MOVIE_ID', type=int)
 # -----------------------------------------
     # 데이터베이스 연결 정보
-    conn = cx_Oracle.connect('pjw/a1234@localhost:1521/xe')
+    conn = cx_Oracle.connect('pj2/a1234@localhost:1521/xe')
 
     # 출력 옵션 설정
     pd.set_option('display.max_columns', None)  # 모든 열 출력
@@ -418,7 +418,7 @@ def recommend_movie():
         movie_indices = [i[0] for i in sim_scores]
 
         # 인덱스를 이용해 영화 ID추출 (list로 변환)
-        return movieList['MOVIE_ID'].iloc[movie_indices].tolist()
+        return movieList['MOVIE_ID'].iloc[movie_izndices].tolist()
 
     return get_recommendations(movie_id)
 

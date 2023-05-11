@@ -66,6 +66,7 @@ function AdminLogin() {
         console.log(jwtadminEmail);
         console.log(jwtadminName);
         localStorage.setItem('Authorization', jwtToken);
+        localStorage.setItem('adminId', response.data.admin_id);
         localStorage.setItem('adminEmail', jwtadminEmail);
         localStorage.setItem('adminName', jwtadminName);
         localStorage.setItem('authRole', jwtAuthRole);

@@ -41,6 +41,7 @@ function App() {
         <Route path="/:profileType/:id" element={<PrivateRoute isAuth={false} RouteComponent={CastProfile} />} />
         <Route path="/recommend" element={<PrivateRoute isAuth={true} RouteComponent={Recommend} />} />
         <Route path='/notice' element={<AdminPrivateRoute isAuth={false} RouteComponent={Notice} />} />
+
         <Route path='/adminlogin' element={<AdminPrivateRoute isAuth={false} RouteComponent={AdminLogin} />} />
         <Route path='/adminregister' element={<AdminPrivateRoute isAuth={false} RouteComponent={AdminRegister} />} />
         <Route path='/admineditinfo' element={<AdminPrivateRoute isAuth={true} RouteComponent={AdminEditInfo} />} />
