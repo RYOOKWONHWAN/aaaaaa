@@ -131,7 +131,7 @@
   padding-left: 30px !important;
 }
 
-.form-check-input:checked + .form-check-label {
+.form-check-input:checked+.form-check-label {
   color: #E75757;
 }
 
@@ -147,7 +147,7 @@
 .FullScreenModal .full-screen-modal-content img {
   width: 1200px;
   border-radius: 10px;
-  
+
 }
 
 .FullScreenModalOverlay {
@@ -160,7 +160,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-} 
+}
 
 .full-screen-modal-content .prev_button,
 .full-screen-modal-content .next_button {
@@ -209,4 +209,34 @@
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 50;
+}
+
+
+.NoticeModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 20px;
+  width: 500px;
+  max-width: 80%;
+  outline: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.NoticeOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  overflow-y: auto;
+  overflow-x: hidden;
+  outline: 0;
 }

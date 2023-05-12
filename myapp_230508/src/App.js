@@ -22,6 +22,8 @@ import AdminPage from 'components/Admin/AdminPage';
 import AdminPrivateRoute from 'access/AdminPrivateRoute';
 import Recommend from 'components/Recommend/Recommend';
 import NoticePage from 'components/Notice/NoticePage';
+import EditNotice from 'components/Notice/EditNotice';
+import ModifyNotice from 'components/Notice/ModifyNotice';
 
 function App() {
   return (
@@ -46,7 +48,9 @@ function App() {
         <Route path='/adminregister' element={<AdminPrivateRoute isAuth={false} RouteComponent={AdminRegister} />} />
         <Route path='/admineditinfo' element={<AdminPrivateRoute isAuth={true} RouteComponent={AdminEditInfo} />} />
         <Route path='/adminpage' element={<AdminPrivateRoute isAuth={true} RouteComponent={AdminPage} />} />
-        <Route path='/noticepage' element={<AdminPrivateRoute isAuth={true} RouteComponent={NoticePage} />} />
+        <Route path='/adminnotice' element={<AdminPrivateRoute isAuth={true} RouteComponent={NoticePage} />} />
+        <Route path='/admineditnotice' element={<AdminPrivateRoute isAuth={true} RouteComponent={EditNotice} />} />
+        <Route path='/adminmodifynotice/:notice_id' element={<AdminPrivateRoute isAuth={true} RouteComponent={ModifyNotice} />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BaseLayout>

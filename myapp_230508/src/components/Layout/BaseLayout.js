@@ -7,10 +7,15 @@ import { Outlet, useLocation } from 'react-router-dom';
 const BaseLayout = ({ children }) => {
   const location = useLocation();
   const isHome = location.pathname === '/';
-
+  const { pathname } = location;
   return (
     <>
-      <IndexNavbar transparent={isHome}/>
+      {pathname.startsWith('/admin') ? (
+        <IndexNavbar transparent={isHome} isAdmin={true} />
+      ) : (
+        <IndexNavbar transparent={isHome} isAdmin={false} />
+      )}
+
       <Outlet />
       {children}
       <Footer />

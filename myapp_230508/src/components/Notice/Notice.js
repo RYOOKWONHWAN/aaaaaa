@@ -4,13 +4,17 @@ import Page from './Page';
 import Pagination from 'react-bootstrap/Pagination';
 import axios from 'axios';
 import { baseUrl } from 'Apiurl';
+
+import { Button } from 'reactstrap';
+import { useDispatch } from 'react-redux';
+
 const Notice = () => {
 
   const [imageSrc, setImageSrc] = useState('');
   const [showText, setShowText] = useState(false); // state to keep track of whether text should be shown or hidden
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 번호
-  const [noticesPerPage, setNoticesPerPage] = useState(2); // 페이지당 공지사항 개수
-
+  const [noticesPerPage, setNoticesPerPage] = useState(4); // 페이지당 공지사항 개수
+  const adminId = localStorage.getItem("adminId")
   const [notices, setNotices] = useState("");
 
   // 페이지네이션 처리 함수
@@ -21,6 +25,17 @@ const Notice = () => {
   const indexOfFirstNotice = indexOfLastNotice - noticesPerPage;
   const currentNotices = notices.slice(indexOfFirstNotice, indexOfLastNotice);
 
+
+  //모달
+  const [noticeModal, setNoticeModal] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const dispatch = useDispatch();
+
+  const handleOpenModal = (notice) => {
+    setNoticeModal(notice);
+    setShowModal(true);
+  };
+  const handleCloseModal = () => setShowModal(false);
 
 
 
@@ -43,10 +58,11 @@ const Notice = () => {
       prevNotices.map((notice) =>
         notice.notice_id === notice_id
           ? { ...notice, showText: !notice.showText }
-          : notice
+          : { ...notice, showText: false } // 다른 공지사항은 모두 닫기
       )
     );
   };
+
 
   // config 헤더 정의
   const config = {
@@ -55,6 +71,9 @@ const Notice = () => {
       Authorization: localStorage.getItem("Authorization"),
     },
   };
+
+
+
 
   useEffect(() => {
     axios.post(`${baseUrl}/selectallnotice`, config)  // 공지사항 전체출력하는 컨트롤러
@@ -75,20 +94,7 @@ const Notice = () => {
         </p>
 
         <div className={style.main_line}></div>
-        <div className={style.line}></div>
-        <div className={style.notice}>
-          <div className={style.notice_set} onClick={handleToggleText}>
-            <div className={style.title}>부귀영화 v.0.12 업데이트 공지사항</div>
-            <div className={style.date}>2023.05.02</div>
-          </div>
-          {showText && (
-            <div className={style.text}>
-              부귀영화 관리자 송세라님께서, 탈주하셨습니다.
-              <br />
-              모두들 즐거운 마음으로 프로젝트를 마무리 해주시길 바랍니다.
-            </div>
-          )}
-        </div>
+
         {notices && notices.slice((currentPage - 1) * noticesPerPage, currentPage * noticesPerPage).map((notice) => (
           <div key={notice.notice_id}>
             <div className={style.line}></div>
@@ -104,8 +110,11 @@ const Notice = () => {
                 <div className={style.text}>
                   {notice.content}
                   {notice.upload !== null && <img src={"/profiles/" + notice.upload} style={{ width: "100%", height: "100%" }} />}
+
                 </div>
+
               )}
+
             </div>
           </div>
         ))}
@@ -118,6 +127,9 @@ const Notice = () => {
         />
 
       </div>
+
+
+
 
     </>
   );

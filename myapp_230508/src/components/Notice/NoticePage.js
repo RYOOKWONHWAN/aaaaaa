@@ -83,7 +83,10 @@ function NoticePage() {
 
         await axios.post(`${baseUrl}/noticefileupdate`, formData, {
             headers: formHeaders,
-        });
+        }).then(
+            alert("등록되었습니다"),
+            window.location.replace("/adminnotice")
+        );
 
 
     };
@@ -155,7 +158,7 @@ function NoticePage() {
 
                             <FormGroup>
                                 <button type="submit" className="btn btn-primary">
-                                    회원정보 수정
+                                    저장하기
                                 </button>
                             </FormGroup>
 
